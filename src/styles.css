@@ -214,18 +214,13 @@
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 1s ease, transform 1s ease;
+}
+.reveal[data-pending="true"] {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 1s ease, transform 1s ease;
-  will-change: opacity, transform;
-}
-.reveal[data-shown="true"] {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* If JS is disabled, never hide content */
-@media (scripting: none) {
-  .reveal { opacity: 1; transform: none; }
 }
 
 .cinematic-gradient {
