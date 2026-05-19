@@ -264,7 +264,7 @@ function AboutBook() {
             <p className="text-[10px] tracking-[0.55em] uppercase text-gold mb-8">
               ── About the Book
             </p>
-            <h2 className="font-display text-4xl md:text-6xl leading-[1.02] mb-10 text-paper">
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.02] mb-10 text-paper">
               Some journeys are not
               <br />
               measured
@@ -377,7 +377,7 @@ function AboutAuthor() {
             <p className="text-[10px] tracking-[0.55em] uppercase text-gold mb-8">
               ── About the Author
             </p>
-            <h2 className="font-display text-4xl md:text-6xl leading-[1.05] mb-10">
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-10">
               Writing the quiet
               <span className="block font-serif-em italic text-gold font-medium mt-2">
                 between the noise.
@@ -450,7 +450,7 @@ function Reviews() {
             <p className="text-[10px] tracking-[0.55em] uppercase text-gold mb-5">
               ── Praise
             </p>
-            <h2 className="font-display text-4xl md:text-6xl leading-tight text-paper">
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight text-paper">
               What readers
               <span className="font-serif-em italic text-ember font-medium"> are saying</span>
             </h2>
@@ -520,7 +520,7 @@ function Contact() {
             <p className="text-[10px] tracking-[0.55em] uppercase text-gold mb-5">
               ── Contact
             </p>
-            <h2 className="font-display text-4xl md:text-6xl leading-tight text-paper">
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight text-paper">
               Write to
               <span className="font-serif-em italic text-ember font-medium"> the author</span>
             </h2>
