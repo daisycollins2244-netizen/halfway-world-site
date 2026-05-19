@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -63,8 +64,13 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.005 80);
+  --foreground: oklch(0.14 0.01 60);
+  --ink: oklch(0.12 0.01 60);
+  --paper: oklch(0.985 0.005 80);
+  --gold: oklch(0.78 0.16 60);
+  --ember: oklch(0.66 0.21 40);
+  --haze: oklch(0.92 0.04 70);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -138,7 +144,54 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
+
+  .font-display {
+    font-family: "Oswald", "Inter", sans-serif;
+    font-stretch: condensed;
+    letter-spacing: 0.02em;
+  }
+  .font-serif-em {
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  html { scroll-behavior: smooth; }
+}
+
+@keyframes haze {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: 0.55; }
+  50% { transform: translate3d(-2%, -1%, 0) scale(1.05); opacity: 0.75; }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-haze { animation: haze 14s ease-in-out infinite; }
+.animate-drift { animation: drift 8s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 1s ease-out both; }
+
+.text-gold { color: oklch(0.78 0.16 60); }
+.text-ember { color: oklch(0.66 0.21 40); }
+.bg-ink { background-color: oklch(0.12 0.01 60); }
+.bg-paper { background-color: oklch(0.985 0.005 80); }
+
+.cinematic-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, oklch(0.85 0.15 55 / 0.45), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 70% 80%, oklch(0.65 0.22 35 / 0.35), transparent 65%),
+    linear-gradient(180deg, oklch(0.99 0.005 80) 0%, oklch(0.94 0.04 65) 45%, oklch(0.88 0.08 50) 100%);
+}
+.cinematic-gradient-dark {
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 20%, oklch(0.7 0.2 45 / 0.35), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, oklch(0.55 0.18 35 / 0.25), transparent 65%),
+    linear-gradient(180deg, oklch(0.14 0.01 60) 0%, oklch(0.1 0.01 60) 100%);
 }
