@@ -28,11 +28,13 @@ function useInView<T extends HTMLElement>() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Mark as pending only after mount, then observe
+    el.dataset.pending = "true";
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            el.dataset.shown = "true";
+            delete el.dataset.pending;
             io.unobserve(el);
           }
         });
@@ -40,8 +42,10 @@ function useInView<T extends HTMLElement>() {
       { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(el);
-    // Safety: reveal after 1.2s no matter what
-    const t = window.setTimeout(() => (el.dataset.shown = "true"), 1200);
+    // Safety net
+    const t = window.setTimeout(() => {
+      delete el.dataset.pending;
+    }, 1500);
     return () => {
       io.disconnect();
       window.clearTimeout(t);
