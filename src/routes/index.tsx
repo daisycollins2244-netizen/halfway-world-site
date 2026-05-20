@@ -129,26 +129,90 @@ function Hero() {
       id="home"
       className="relative min-h-screen w-full overflow-hidden cover-gradient flex items-center justify-center"
     >
-      {/* Atmospheric haze */}
+      {/* Cover-inspired atmosphere: sun disc, horizon haze, silhouette skyline */}
       <div className="pointer-events-none absolute inset-0">
+        {/* Glowing sun disc — the cover's hero element */}
         <div
-          className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] rounded-full blur-3xl animate-haze"
+          className="absolute left-1/2 -translate-x-1/2 bottom-[18%] md:bottom-[14%] w-[55vw] h-[55vw] md:w-[38vw] md:h-[38vw] max-w-[640px] max-h-[640px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.78 0.18 55 / 0.45), transparent 60%)",
+              "radial-gradient(circle at 50% 50%, oklch(0.92 0.13 80 / 0.95) 0%, oklch(0.82 0.18 60 / 0.85) 30%, oklch(0.62 0.22 40 / 0.55) 55%, transparent 72%)",
+            filter: "blur(2px)",
+            boxShadow:
+              "0 0 200px 60px oklch(0.78 0.18 55 / 0.45), 0 0 400px 120px oklch(0.55 0.22 38 / 0.35)",
+          }}
+        />
+        {/* Horizon band */}
+        <div
+          className="absolute inset-x-0 bottom-[16%] h-[2px]"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, oklch(0.88 0.12 75 / 0.55), oklch(0.95 0.08 85 / 0.8), oklch(0.88 0.12 75 / 0.55), transparent)",
+            boxShadow: "0 0 30px oklch(0.85 0.15 70 / 0.7)",
+          }}
+        />
+        {/* Drifting haze layers */}
+        <div
+          className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[140vw] h-[70vh] rounded-full blur-3xl animate-haze"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.78 0.18 55 / 0.35), transparent 60%)",
           }}
         />
         <div
-          className="absolute top-[10%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-3xl animate-haze"
+          className="absolute top-[8%] right-[-10%] w-[55vw] h-[55vw] rounded-full blur-3xl animate-haze"
           style={{
             animationDelay: "5s",
             background:
-              "radial-gradient(circle, oklch(0.6 0.22 35 / 0.35), transparent 70%)",
+              "radial-gradient(circle, oklch(0.6 0.22 35 / 0.3), transparent 70%)",
           }}
         />
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.06_0.005_50/0.7)_95%)]" />
+
+        {/* Silhouette skyline — bottom edge, evokes the cover's cityline */}
+        <svg
+          className="absolute inset-x-0 bottom-0 w-full h-[22vh] md:h-[26vh]"
+          viewBox="0 0 1440 220"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <defs>
+            <linearGradient id="sky-fade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="oklch(0.09 0.008 50)" stopOpacity="0" />
+              <stop offset="55%" stopColor="oklch(0.07 0.008 50)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="oklch(0.05 0.005 50)" stopOpacity="1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,220 L0,150 L40,150 L40,120 L80,120 L80,140 L120,140 L120,90 L150,90 L150,135 L200,135 L200,110 L230,110 L230,70 L255,70 L255,115 L310,115 L310,140 L360,140 L360,95 L395,95 L395,55 L420,55 L420,100 L470,100 L470,130 L520,130 L520,80 L555,80 L555,120 L610,120 L610,145 L660,145 L660,100 L695,100 L695,60 L720,60 L720,110 L770,110 L770,135 L820,135 L820,85 L855,85 L855,125 L910,125 L910,150 L960,150 L960,95 L995,95 L995,55 L1020,55 L1020,105 L1075,105 L1075,135 L1130,135 L1130,80 L1165,80 L1165,120 L1220,120 L1220,145 L1275,145 L1275,100 L1310,100 L1310,70 L1340,70 L1340,115 L1395,115 L1395,140 L1440,140 L1440,220 Z"
+            fill="oklch(0.06 0.008 50)"
+          />
+          <rect width="1440" height="220" fill="url(#sky-fade)" />
+        </svg>
+
+        {/* Vignette + grain */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.06_0.005_50/0.75)_95%)]" />
         <div className="grain" />
+      </div>
+
+      {/* Floating cover thumbnail — bottom-right cinematic anchor */}
+      <div
+        className="hidden md:block absolute right-8 lg:right-16 bottom-24 z-10 animate-drift"
+        style={{ animation: "fade-up 1.6s ease-out 1.1s both, drift 8s ease-in-out infinite" }}
+      >
+        <div className="relative group">
+          <div
+            className="absolute -inset-6 blur-2xl opacity-60"
+            style={{
+              background:
+                "radial-gradient(circle, oklch(0.78 0.18 55 / 0.55), transparent 70%)",
+            }}
+          />
+          <img
+            src={bookCover}
+            alt="Halfway Around the World — cover"
+            className="relative w-28 lg:w-36 rotate-[-4deg] shadow-[0_30px_80px_-10px_rgba(0,0,0,0.85)] ring-1 ring-paper/10"
+          />
+        </div>
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-5xl">
