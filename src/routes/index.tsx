@@ -1,34 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import bookCover from "../assets/book-cover.png";
+import bookCover from "../assets/unchained-cover.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Halfway Around the World — A novel by A. Jain" },
+      { title: "UNCHAINED — Live the Life You Were Meant to Lead | Darius McDonald, Sr." },
       {
         name: "description",
         content:
-          "Halfway Around the World by A. Jain — an intimate, cinematic novel of Silicon Valley ambition, modern love, cross-cultural desire, and the private decisions that shape who we become.",
+          "UNCHAINED by Darius McDonald, Sr. — a transformational guide to purpose, discipline, courage, and the life you were destined to lead.",
       },
-      { property: "og:title", content: "Halfway Around the World — A. Jain" },
+      { property: "og:title", content: "UNCHAINED — Darius McDonald, Sr." },
       {
         property: "og:description",
         content:
-          "An intimate, cinematic novel about ambition, identity, love, and the cost of the life you said you wanted.",
+          "Break free from fear. Walk in confidence. Live as though you cannot fail.",
       },
     ],
   }),
 });
 
-/* CSS-driven scroll reveal — no JS state, never gets stuck invisible */
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Mark as pending only after mount, then observe
     el.dataset.pending = "true";
     const io = new IntersectionObserver(
       (entries) => {
@@ -42,7 +40,6 @@ function useInView<T extends HTMLElement>() {
       { threshold: 0.12, rootMargin: "0px 0px -10% 0px" },
     );
     io.observe(el);
-    // Safety net
     const t = window.setTimeout(() => {
       delete el.dataset.pending;
     }, 1500);
@@ -95,16 +92,16 @@ function Nav() {
     <nav
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "backdrop-blur-xl bg-[oklch(0.09_0.008_50/0.7)] border-b border-paper/5"
+          ? "backdrop-blur-xl bg-[oklch(0.07_0.008_60/0.75)] border-b border-paper/5"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
         <a
           href="#home"
-          className="font-display text-[11px] tracking-[0.4em] uppercase text-paper/90"
+          className="font-display text-[11px] tracking-[0.4em] uppercase text-gold"
         >
-          A. Jain
+          Darius McDonald, Sr.
         </a>
         <ul className="hidden md:flex items-center gap-10 text-[10px] tracking-[0.35em] uppercase text-paper/60">
           {links.map(([label, href]) => (
@@ -116,7 +113,7 @@ function Nav() {
           ))}
         </ul>
         <span className="hidden md:block text-[10px] tracking-[0.4em] uppercase text-paper/40">
-          A Novel · 2026
+          Unchained · 2026
         </span>
       </div>
     </nav>
@@ -127,130 +124,130 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden cover-gradient flex items-center justify-center"
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
+      style={{
+        background:
+          "radial-gradient(ellipse 90% 65% at 50% 95%, oklch(0.82 0.16 75 / 0.55), transparent 60%)," +
+          "radial-gradient(ellipse 60% 45% at 70% 80%, oklch(0.6 0.22 45 / 0.45), transparent 65%)," +
+          "linear-gradient(180deg, oklch(0.06 0.005 60) 0%, oklch(0.09 0.01 55) 45%, oklch(0.18 0.05 60) 100%)",
+      }}
     >
-      {/* Cover-inspired atmosphere: sun disc, horizon haze, silhouette skyline */}
+      {/* Sunrise disc */}
       <div className="pointer-events-none absolute inset-0">
-        {/* Glowing sun disc — the cover's hero element */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-[18%] md:bottom-[14%] w-[55vw] h-[55vw] md:w-[38vw] md:h-[38vw] max-w-[640px] max-h-[640px] rounded-full"
+          className="absolute left-1/2 -translate-x-1/2 bottom-[10%] w-[70vw] h-[70vw] md:w-[45vw] md:h-[45vw] max-w-[760px] max-h-[760px] rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 50% 50%, oklch(0.92 0.13 80 / 0.95) 0%, oklch(0.82 0.18 60 / 0.85) 30%, oklch(0.62 0.22 40 / 0.55) 55%, transparent 72%)",
+              "radial-gradient(circle at 50% 50%, oklch(0.96 0.12 85 / 0.95) 0%, oklch(0.88 0.16 75 / 0.85) 25%, oklch(0.7 0.2 55 / 0.6) 50%, transparent 72%)",
             filter: "blur(2px)",
             boxShadow:
-              "0 0 200px 60px oklch(0.78 0.18 55 / 0.45), 0 0 400px 120px oklch(0.55 0.22 38 / 0.35)",
+              "0 0 220px 70px oklch(0.85 0.18 70 / 0.5), 0 0 480px 140px oklch(0.6 0.22 45 / 0.35)",
           }}
         />
-        {/* Horizon band */}
+        {/* Horizon line */}
         <div
-          className="absolute inset-x-0 bottom-[16%] h-[2px]"
+          className="absolute inset-x-0 bottom-[12%] h-[2px]"
           style={{
             background:
-              "linear-gradient(90deg, transparent, oklch(0.88 0.12 75 / 0.55), oklch(0.95 0.08 85 / 0.8), oklch(0.88 0.12 75 / 0.55), transparent)",
-            boxShadow: "0 0 30px oklch(0.85 0.15 70 / 0.7)",
+              "linear-gradient(90deg, transparent, oklch(0.92 0.14 80 / 0.7), oklch(0.98 0.08 90 / 0.9), oklch(0.92 0.14 80 / 0.7), transparent)",
+            boxShadow: "0 0 40px oklch(0.88 0.16 75 / 0.8)",
           }}
         />
-        {/* Drifting haze layers */}
+        {/* Drifting haze */}
         <div
           className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-[140vw] h-[70vh] rounded-full blur-3xl animate-haze"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.78 0.18 55 / 0.35), transparent 60%)",
+              "radial-gradient(circle, oklch(0.78 0.18 60 / 0.4), transparent 60%)",
           }}
         />
         <div
-          className="absolute top-[8%] right-[-10%] w-[55vw] h-[55vw] rounded-full blur-3xl animate-haze"
+          className="absolute top-[6%] right-[-10%] w-[55vw] h-[55vw] rounded-full blur-3xl animate-haze"
           style={{
             animationDelay: "5s",
             background:
-              "radial-gradient(circle, oklch(0.6 0.22 35 / 0.3), transparent 70%)",
+              "radial-gradient(circle, oklch(0.6 0.22 40 / 0.32), transparent 70%)",
           }}
         />
-
-        {/* Silhouette skyline — bottom edge, evokes the cover's cityline */}
+        {/* Distant mountain silhouette */}
         <svg
-          className="absolute inset-x-0 bottom-0 w-full h-[22vh] md:h-[26vh]"
-          viewBox="0 0 1440 220"
+          className="absolute inset-x-0 bottom-0 w-full h-[28vh] md:h-[34vh]"
+          viewBox="0 0 1440 280"
           preserveAspectRatio="none"
           aria-hidden
         >
           <defs>
-            <linearGradient id="sky-fade" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="oklch(0.09 0.008 50)" stopOpacity="0" />
-              <stop offset="55%" stopColor="oklch(0.07 0.008 50)" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="oklch(0.05 0.005 50)" stopOpacity="1" />
+            <linearGradient id="ground-fade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stopColor="oklch(0.08 0.01 55)" stopOpacity="0" />
+              <stop offset="55%" stopColor="oklch(0.06 0.008 55)" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="oklch(0.04 0.005 55)" stopOpacity="1" />
             </linearGradient>
           </defs>
           <path
-            d="M0,220 L0,150 L40,150 L40,120 L80,120 L80,140 L120,140 L120,90 L150,90 L150,135 L200,135 L200,110 L230,110 L230,70 L255,70 L255,115 L310,115 L310,140 L360,140 L360,95 L395,95 L395,55 L420,55 L420,100 L470,100 L470,130 L520,130 L520,80 L555,80 L555,120 L610,120 L610,145 L660,145 L660,100 L695,100 L695,60 L720,60 L720,110 L770,110 L770,135 L820,135 L820,85 L855,85 L855,125 L910,125 L910,150 L960,150 L960,95 L995,95 L995,55 L1020,55 L1020,105 L1075,105 L1075,135 L1130,135 L1130,80 L1165,80 L1165,120 L1220,120 L1220,145 L1275,145 L1275,100 L1310,100 L1310,70 L1340,70 L1340,115 L1395,115 L1395,140 L1440,140 L1440,220 Z"
-            fill="oklch(0.06 0.008 50)"
+            d="M0,280 L0,180 C160,140 280,200 420,160 C560,120 700,180 860,140 C1020,100 1160,170 1300,150 C1380,138 1440,160 1440,160 L1440,280 Z"
+            fill="oklch(0.05 0.008 55)"
           />
-          <rect width="1440" height="220" fill="url(#sky-fade)" />
+          <rect width="1440" height="280" fill="url(#ground-fade)" />
         </svg>
 
         {/* Vignette + grain */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.06_0.005_50/0.75)_95%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,oklch(0.04_0.005_55/0.8)_95%)]" />
         <div className="grain" />
       </div>
 
-      {/* Floating cover thumbnail — bottom-right cinematic anchor */}
+      {/* Floating cover thumbnail */}
       <div
-        className="hidden md:block absolute right-8 lg:right-16 bottom-24 z-10 animate-drift"
+        className="hidden md:block absolute right-8 lg:right-16 bottom-28 z-10"
         style={{ animation: "fade-up 1.6s ease-out 1.1s both, drift 8s ease-in-out infinite" }}
       >
         <div className="relative group">
           <div
-            className="absolute -inset-6 blur-2xl opacity-60"
+            className="absolute -inset-8 blur-3xl opacity-70"
             style={{
               background:
-                "radial-gradient(circle, oklch(0.78 0.18 55 / 0.55), transparent 70%)",
+                "radial-gradient(circle, oklch(0.82 0.18 70 / 0.6), transparent 70%)",
             }}
           />
           <img
             src={bookCover}
-            alt="Halfway Around the World — cover"
-            className="relative w-28 lg:w-36 rotate-[-4deg] shadow-[0_30px_80px_-10px_rgba(0,0,0,0.85)] ring-1 ring-paper/10"
+            alt="Unchained — cover"
+            className="relative w-32 lg:w-44 rotate-[-3deg] shadow-[0_40px_100px_-10px_rgba(0,0,0,0.9)] ring-1 ring-gold/20"
           />
         </div>
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-5xl">
         <p
-          className="text-[10px] md:text-xs tracking-[0.6em] uppercase text-paper/55 mb-10"
+          className="text-[10px] md:text-xs tracking-[0.6em] uppercase text-gold/80 mb-10"
           style={{ animation: "fade-up 1.2s ease-out both" }}
         >
-          — A Novel —
+          — A Bold Awakening —
         </p>
 
         <h1 className="leading-[0.88]">
           <span
-            className="block font-display font-semibold text-paper/95 text-[10vw] md:text-[5.5vw] lg:text-[5rem] tracking-[0.05em]"
-            style={{ animation: "fade-up 1.2s ease-out 0.15s both" }}
+            className="block font-display font-bold tracking-[0.04em] text-[15vw] md:text-[12vw] lg:text-[10rem]"
+            style={{
+              animation: "fade-up 1.2s ease-out 0.15s both",
+              background:
+                "linear-gradient(180deg, oklch(0.95 0.12 88) 0%, oklch(0.82 0.18 70) 55%, oklch(0.6 0.22 45) 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              filter: "drop-shadow(0 0 60px oklch(0.78 0.2 60 / 0.45))",
+            }}
           >
-            HALFWAY AROUND
+            UNCHAINED
           </span>
           <span
-            className="block mt-3 md:mt-5 text-[26vw] md:text-[16vw] lg:text-[14rem] leading-[0.85]"
+            className="block mt-6 md:mt-8 font-display font-medium tracking-[0.18em] text-paper/95 text-[5vw] md:text-[2.5vw] lg:text-3xl"
             style={{ animation: "fade-up 1.4s ease-out 0.35s both" }}
           >
-            <span
-              className="font-serif-em italic font-medium text-ember mr-3 md:mr-6"
-              style={{ color: "var(--ember)" }}
-            >
-              The
+            LIVE THE LIFE YOU WERE
+            <span className="font-serif-em italic font-medium text-gold normal-case tracking-normal px-2">
+              meant
             </span>
-            <span
-              className="font-display font-bold"
-              style={{
-                color: "var(--cream)",
-                textShadow:
-                  "0 0 60px oklch(0.82 0.14 75 / 0.35), 0 4px 30px oklch(0.55 0.22 38 / 0.4)",
-                letterSpacing: "0.02em",
-              }}
-            >
-              WORLD
-            </span>
+            TO LEAD
           </span>
         </h1>
 
@@ -258,9 +255,11 @@ function Hero() {
           className="mt-12 flex items-center justify-center gap-5"
           style={{ animation: "fade-up 1.2s ease-out 0.7s both" }}
         >
-          <span className="h-px w-14 bg-paper/30" />
-          <p className="font-display tracking-[0.55em] text-sm text-paper/85">A. JAIN</p>
-          <span className="h-px w-14 bg-paper/30" />
+          <span className="h-px w-14 bg-gold/40" />
+          <p className="font-display tracking-[0.55em] text-sm text-paper/90">
+            DARIUS McDONALD, SR.
+          </p>
+          <span className="h-px w-14 bg-gold/40" />
         </div>
 
         <div
@@ -269,16 +268,16 @@ function Hero() {
         >
           <a
             href="#book"
-            className="group relative inline-flex items-center gap-4 px-10 py-4 border border-paper/25 text-[10px] tracking-[0.45em] uppercase text-paper/90 overflow-hidden transition-all duration-500 hover:border-gold hover:text-gold"
+            className="group relative inline-flex items-center gap-4 px-10 py-4 border border-gold/40 text-[10px] tracking-[0.45em] uppercase text-gold overflow-hidden transition-all duration-500 hover:border-gold hover:text-ink"
           >
             <span
               className="absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-700"
               style={{
                 background:
-                  "linear-gradient(90deg, oklch(0.55 0.22 38 / 0.18), oklch(0.82 0.14 75 / 0.18))",
+                  "linear-gradient(90deg, oklch(0.82 0.18 70), oklch(0.95 0.14 88))",
               }}
             />
-            <span className="relative">Explore the Book</span>
+            <span className="relative">Discover the Book</span>
             <span className="relative transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
@@ -286,22 +285,53 @@ function Hero() {
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-[9px] tracking-[0.5em] uppercase text-paper/40">
         <span>Scroll</span>
-        <span className="block h-10 w-px bg-paper/20 animate-drift" />
+        <span className="block h-10 w-px bg-gold/30 animate-drift" />
       </div>
     </section>
   );
 }
 
+function PullQuote({ text }: { text: string }) {
+  return (
+    <Reveal>
+      <blockquote className="relative my-16 md:my-20 text-center">
+        <span
+          className="font-serif-em italic text-2xl md:text-4xl lg:text-5xl leading-snug"
+          style={{
+            background:
+              "linear-gradient(180deg, oklch(0.96 0.1 88), oklch(0.78 0.18 65))",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          “{text}”
+        </span>
+      </blockquote>
+    </Reveal>
+  );
+}
+
 function AboutBook() {
+  const themes = [
+    "Purpose",
+    "Discipline",
+    "Confidence",
+    "Gratitude",
+    "Courage",
+    "Personal Growth",
+    "Intentional Living",
+    "Freedom from Fear",
+    "Impact",
+  ];
   return (
     <section id="book" className="relative bg-ink py-32 md:py-44 overflow-hidden">
-      {/* sunset glow bleed from above */}
       <div className="absolute -top-40 inset-x-0 h-80 sunset-band opacity-60" />
       <div
-        className="absolute -bottom-40 -left-40 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-25"
+        className="absolute -bottom-40 -right-40 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-25"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.68 0.21 45 / 0.6), transparent 70%)",
+            "radial-gradient(circle, oklch(0.78 0.2 65 / 0.6), transparent 70%)",
         }}
       />
 
@@ -309,16 +339,16 @@ function AboutBook() {
         <Reveal className="md:col-span-5">
           <div className="relative group">
             <div
-              className="absolute -inset-10 blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700"
+              className="absolute -inset-10 blur-3xl opacity-60 group-hover:opacity-90 transition-opacity duration-700"
               style={{
                 background:
-                  "radial-gradient(circle, oklch(0.68 0.21 45 / 0.5), transparent 70%)",
+                  "radial-gradient(circle, oklch(0.82 0.18 70 / 0.55), transparent 70%)",
               }}
             />
             <img
               src={bookCover}
-              alt="Halfway Around the World — book cover by A. Jain"
-              className="relative w-full shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)] transition-transform duration-700 group-hover:-translate-y-1"
+              alt="Unchained — book cover by Darius McDonald, Sr."
+              className="relative w-full shadow-[0_40px_120px_-20px_rgba(0,0,0,0.85)] ring-1 ring-gold/15 transition-transform duration-700 group-hover:-translate-y-1"
             />
           </div>
         </Reveal>
@@ -328,59 +358,53 @@ function AboutBook() {
             <p className="text-[10px] tracking-[0.55em] uppercase text-gold mb-8">
               ── About the Book
             </p>
-            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.02] mb-10 text-paper">
-              Some journeys are not
-              <br />
-              measured
-              <span className="font-serif-em italic text-ember font-medium"> in miles.</span>
+            <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-10 text-paper">
+              Break the chains.
+              <span className="block font-serif-em italic text-gold font-medium mt-2">
+                Walk into the light.
+              </span>
             </h2>
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="space-y-6 text-[15px] md:text-base leading-relaxed text-paper/70 max-w-2xl">
-              <p className="text-paper/85">
-                They're measured in the decisions you make when the world gets too loud to
-                hear yourself.
+            <div className="space-y-6 text-[15px] md:text-base leading-relaxed text-paper/75 max-w-2xl">
+              <p className="text-paper/90">
+                <span className="font-serif-em italic text-cream">Unchained</span> is a
+                transformational guide for anyone ready to stop holding back and start
+                living boldly — on purpose, with confidence, and without apology.
               </p>
               <p>
-                Andy is a Silicon Valley tech founder chasing the kind of future most
-                people only talk about. In boardrooms, investor meetings, late-night
-                product decisions, and the lonely silence after another win that doesn't
-                feel like enough, he learns that ambition doesn't just build companies —
-                it rewires people.
+                Darius McDonald, Sr. delivers a powerful wake-up call: you are not
+                promised forever, so make today count. This isn't another motivational
+                book — it's a declaration of purpose, a blueprint for intentional living,
+                and a call to lead with courage, discipline, love, and impact.
               </p>
               <p>
-                Across cities and oceans, Andy is pulled between love, duty, desire, and
-                the pressure to become someone larger than his own doubts. Cindy, a Hong
-                Kong woman with her own hunger for truth and control, sees through the
-                polished founder story he tells the world. Marinda offers a different
-                kind of steadiness — built from discipline, intimacy, and rules neither
-                of them fully understand.
-              </p>
-              <p className="font-serif-em italic text-cream/90 text-lg md:text-xl pt-2">
-                What are you willing to sacrifice for the life you said you wanted?
+                Inside, you'll discover how to cultivate peace in the middle of chaos,
+                embrace joy without apology, practice gratitude as a daily discipline,
+                give and love more than you thought possible, and leave nothing on the
+                table.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={220}>
-            <ul className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 text-[10px] tracking-[0.35em] uppercase text-paper/50">
-              {[
-                "Ambition",
-                "Identity",
-                "Love",
-                "Sacrifice",
-                "Distance",
-                "Modern Life",
-              ].map((t) => (
+            <ul className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4 text-[10px] tracking-[0.35em] uppercase text-paper/55">
+              {themes.map((t) => (
                 <li key={t} className="flex items-center gap-3">
-                  <span className="h-px w-5 bg-ember/70" />
+                  <span className="h-px w-5 bg-gold/70" />
                   {t}
                 </li>
               ))}
             </ul>
           </Reveal>
+
+          <PullQuote text="Live as though you cannot fail." />
         </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6">
+        <PullQuote text="You were destined to win." />
       </div>
     </section>
   );
@@ -393,10 +417,10 @@ function AboutAuthor() {
       className="relative bg-ink-2 text-paper py-32 md:py-44 overflow-hidden"
     >
       <div
-        className="absolute -top-40 right-0 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-25 animate-haze"
+        className="absolute -top-40 left-0 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-25 animate-haze"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.78 0.18 55 / 0.5), transparent 70%)",
+            "radial-gradient(circle, oklch(0.82 0.18 70 / 0.5), transparent 70%)",
         }}
       />
       <div className="grain" />
@@ -407,14 +431,14 @@ function AboutAuthor() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(160deg, oklch(0.2 0.02 50) 0%, oklch(0.1 0.008 50) 100%)",
+                  "linear-gradient(160deg, oklch(0.2 0.02 60) 0%, oklch(0.08 0.008 55) 100%)",
               }}
             />
             <div
-              className="absolute inset-0 opacity-70"
+              className="absolute inset-0 opacity-80"
               style={{
                 background:
-                  "radial-gradient(circle at 70% 30%, oklch(0.78 0.18 55 / 0.45), transparent 60%)",
+                  "radial-gradient(circle at 70% 25%, oklch(0.85 0.18 70 / 0.55), transparent 60%)",
               }}
             />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -422,16 +446,16 @@ function AboutAuthor() {
                 className="font-display font-bold text-[12rem] md:text-[14rem] leading-none"
                 style={{
                   color: "var(--gold)",
-                  opacity: 0.25,
-                  textShadow: "0 0 80px oklch(0.78 0.18 55 / 0.5)",
+                  opacity: 0.3,
+                  textShadow: "0 0 80px oklch(0.82 0.18 70 / 0.6)",
                 }}
               >
-                AJ
+                DM
               </span>
             </div>
-            <div className="absolute inset-0 border border-paper/10" />
-            <div className="absolute bottom-5 left-5 text-[9px] tracking-[0.45em] uppercase text-paper/45">
-              A. Jain — Portrait
+            <div className="absolute inset-0 border border-gold/15" />
+            <div className="absolute bottom-5 left-5 text-[9px] tracking-[0.45em] uppercase text-paper/50">
+              Darius McDonald, Sr. — Portrait
             </div>
           </div>
         </Reveal>
@@ -442,31 +466,29 @@ function AboutAuthor() {
               ── About the Author
             </p>
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] mb-10">
-              Writing the quiet
+              Leading others
               <span className="block font-serif-em italic text-gold font-medium mt-2">
-                between the noise.
+                into their light.
               </span>
             </h2>
           </Reveal>
           <Reveal delay={120}>
-            <div className="space-y-6 text-[15px] leading-relaxed text-paper/70 max-w-2xl">
+            <div className="space-y-6 text-[15px] leading-relaxed text-paper/75 max-w-2xl">
               <p>
-                A. Jain writes contemporary fiction about ambition, intimacy, and the
-                interior lives of the people building the modern world. Drawing on years
-                spent between Silicon Valley boardrooms and the long flights that connect
-                Asia, Europe, and the Bay, Jain's work lives at the intersection of
-                technology and tenderness.
+                Darius McDonald, Sr. is a leader, speaker, and author devoted to helping
+                people break free from the limitations that keep them small. Through
+                discipline, faith, and an unshakeable belief in human potential, his
+                work has guided readers and audiences toward purpose, courage, and
+                impact.
               </p>
               <p>
-                <span className="font-serif-em italic text-cream">
-                  Halfway Around the World
-                </span>{" "}
-                is a debut novel of restless founders, complicated love, and the private
-                cost of public success — a story for anyone who has ever wondered whether
-                the life they're chasing is still the one they wanted.
+                <span className="font-serif-em italic text-cream">Unchained</span> is
+                his call to a generation ready to stop surviving and start leading —
+                with love, conviction, and the kind of boldness that changes lives.
               </p>
             </div>
           </Reveal>
+          <PullQuote text="Lead with love. Walk in confidence." />
         </div>
       </div>
     </section>
@@ -476,38 +498,38 @@ function AboutAuthor() {
 const reviews = [
   {
     quote:
-      "A cinematic, emotionally exact portrait of modern ambition. Jain writes the silence between decisions better than anyone I've read this year.",
-    name: "Literary Review Quarterly",
+      "A powerful, soul-stirring read. Darius doesn't just inspire — he equips you to live with purpose, every single day.",
+    name: "Pastor M. Reynolds",
+    role: "Faith Leader",
+    stars: 5,
+  },
+  {
+    quote:
+      "This book broke chains I didn't even know I was wearing. A modern blueprint for courage and intentional living.",
+    name: "Tasha B.",
+    role: "Reader",
+    stars: 5,
+  },
+  {
+    quote:
+      "Equal parts wake-up call and warm embrace. Required reading for anyone serious about leading the life they were meant for.",
+    name: "Leadership Today",
     role: "Editorial",
     stars: 5,
   },
   {
     quote:
-      "Spare, luminous, and quietly devastating. It reads like an A24 film translated into prose — every page earns its restraint.",
-    name: "The Margin Press",
-    role: "Featured Review",
-    stars: 5,
-  },
-  {
-    quote:
-      "I finished it on a red-eye and sat in the dark long after we landed. A novel about the cost of building something — and of building yourself.",
-    name: "Priya M.",
+      "Bold, disciplined, and full of heart. Darius writes with the conviction of someone who has lived every word.",
+    name: "Marcus J.",
     role: "Reader",
     stars: 5,
-  },
-  {
-    quote:
-      "Captures the texture of a life lived across time zones with rare precision. Tender, controlled, and entirely contemporary.",
-    name: "Daniel R.",
-    role: "Reader",
-    stars: 4,
   },
 ];
 
 function Reviews() {
   return (
     <section id="reviews" className="relative bg-ink py-32 md:py-44 overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/40 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
       <div className="max-w-7xl mx-auto px-6 md:px-10 relative">
         <Reveal>
           <div className="text-center mb-20">
@@ -516,7 +538,7 @@ function Reviews() {
             </p>
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight text-paper">
               What readers
-              <span className="font-serif-em italic text-ember font-medium"> are saying</span>
+              <span className="font-serif-em italic text-gold font-medium"> are saying</span>
             </h2>
           </div>
         </Reveal>
@@ -524,12 +546,12 @@ function Reviews() {
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 90}>
-              <article className="group relative h-full p-10 md:p-12 border border-paper/10 bg-[oklch(0.13_0.012_50/0.6)] backdrop-blur-sm transition-all duration-500 hover:border-ember/40 hover:-translate-y-1">
+              <article className="group relative h-full p-10 md:p-12 border border-gold/15 bg-[oklch(0.11_0.012_55/0.7)] backdrop-blur-sm transition-all duration-500 hover:border-gold/50 hover:-translate-y-1">
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                   style={{
                     boxShadow:
-                      "inset 0 0 80px oklch(0.68 0.21 45 / 0.08), 0 30px 80px -30px oklch(0.68 0.21 45 / 0.4)",
+                      "inset 0 0 80px oklch(0.82 0.18 70 / 0.1), 0 30px 80px -30px oklch(0.82 0.18 70 / 0.45)",
                   }}
                 />
                 <div className="flex items-center gap-1 mb-7">
@@ -537,7 +559,7 @@ function Reviews() {
                     <span
                       key={idx}
                       className={`text-xs ${
-                        idx < r.stars ? "text-ember" : "text-paper/15"
+                        idx < r.stars ? "text-gold" : "text-paper/15"
                       }`}
                     >
                       ★
@@ -547,9 +569,9 @@ function Reviews() {
                 <p className="font-serif-em text-xl md:text-2xl leading-snug text-paper/90 mb-8">
                   "{r.quote}"
                 </p>
-                <div className="flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase text-paper/50">
-                  <span className="h-px w-6 bg-ember/70" />
-                  <span className="text-paper/80">{r.name}</span>
+                <div className="flex items-center gap-3 text-[10px] tracking-[0.35em] uppercase text-paper/55">
+                  <span className="h-px w-6 bg-gold/70" />
+                  <span className="text-paper/85">{r.name}</span>
                   <span>·</span>
                   <span>{r.role}</span>
                 </div>
@@ -574,9 +596,14 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="relative cover-gradient text-paper py-32 md:py-44 overflow-hidden"
+      className="relative text-paper py-32 md:py-44 overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse 90% 65% at 50% 100%, oklch(0.78 0.18 65 / 0.45), transparent 60%)," +
+          "linear-gradient(180deg, oklch(0.07 0.008 55) 0%, oklch(0.12 0.02 55) 100%)",
+      }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,oklch(0.06_0.005_50/0.8)_95%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,oklch(0.05_0.005_55/0.8)_95%)]" />
       <div className="grain" />
       <div className="relative max-w-3xl mx-auto px-6 md:px-10">
         <Reveal>
@@ -586,11 +613,11 @@ function Contact() {
             </p>
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-tight text-paper">
               Write to
-              <span className="font-serif-em italic text-ember font-medium"> the author</span>
+              <span className="font-serif-em italic text-gold font-medium"> the author</span>
             </h2>
-            <p className="mt-6 text-paper/55 text-sm md:text-base max-w-lg mx-auto">
-              For press, interviews, foreign rights, or a quiet note from a reader —
-              your message reaches A. Jain directly.
+            <p className="mt-6 text-paper/60 text-sm md:text-base max-w-lg mx-auto">
+              For speaking, interviews, partnerships, or a word of encouragement —
+              your message reaches Darius directly.
             </p>
           </div>
         </Reveal>
@@ -604,7 +631,7 @@ function Contact() {
               <div key={f.id} className="relative">
                 <label
                   htmlFor={f.id}
-                  className="block text-[10px] tracking-[0.45em] uppercase text-paper/50 mb-3"
+                  className="block text-[10px] tracking-[0.45em] uppercase text-paper/55 mb-3"
                 >
                   {f.label}
                 </label>
@@ -620,7 +647,7 @@ function Contact() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-[10px] tracking-[0.45em] uppercase text-paper/50 mb-3"
+                className="block text-[10px] tracking-[0.45em] uppercase text-paper/55 mb-3"
               >
                 Message
               </label>
@@ -635,13 +662,13 @@ function Contact() {
             <div className="pt-6 text-center">
               <button
                 type="submit"
-                className="group relative inline-flex items-center gap-4 px-12 py-4 border border-paper/30 text-[10px] tracking-[0.45em] uppercase text-paper/90 overflow-hidden transition-all duration-500 hover:border-gold hover:text-gold"
+                className="group relative inline-flex items-center gap-4 px-12 py-4 border border-gold/40 text-[10px] tracking-[0.45em] uppercase text-gold overflow-hidden transition-all duration-500 hover:border-gold hover:text-ink"
               >
                 <span
                   className="absolute inset-0 -translate-x-full group-hover:translate-x-0 transition-transform duration-700"
                   style={{
                     background:
-                      "linear-gradient(90deg, oklch(0.55 0.22 38 / 0.18), oklch(0.82 0.14 75 / 0.18))",
+                      "linear-gradient(90deg, oklch(0.82 0.18 70), oklch(0.95 0.14 88))",
                   }}
                 />
                 <span className="relative">{sent ? "Message Sent" : "Send Message"}</span>
@@ -657,16 +684,16 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="bg-ink text-paper/55 py-14 text-center border-t border-paper/5">
+    <footer className="bg-ink text-paper/55 py-14 text-center border-t border-gold/10">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="font-display tracking-[0.45em] text-xs uppercase text-paper/85">
-          Halfway Around <span className="font-serif-em italic text-ember normal-case px-1">the</span> World
+        <p className="font-display tracking-[0.45em] text-xs uppercase text-gold">
+          UNCHAINED
         </p>
-        <p className="mt-3 text-[10px] tracking-[0.4em] uppercase text-paper/40">
-          A Novel by A. Jain
+        <p className="mt-3 text-[10px] tracking-[0.4em] uppercase text-paper/50">
+          Live the Life You Were Meant to Lead · Darius McDonald, Sr.
         </p>
         <p className="mt-6 text-[10px] text-paper/30">
-          © {new Date().getFullYear()} A. Jain. All rights reserved.
+          © {new Date().getFullYear()} Darius McDonald, Sr. All rights reserved.
         </p>
       </div>
     </footer>
